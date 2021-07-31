@@ -10,6 +10,7 @@
     "solidity-coverage": "^0.7.16"
   },
   "dependencies": {
-    "@openzeppelin/contracts": "^4.2.0"
+    "@openzeppelin/contracts": "^4.2.0",
+    "hardhat-watcher": "^2.1.1"
   }
 }

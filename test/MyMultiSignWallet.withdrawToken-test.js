@@ -193,8 +193,6 @@ describe("MyMultiSignWallet", function () {
         tokenSymbol, 
         amountToTransfer);
 
-
-
       myMultiSignWallet = myMultiSignWallet.connect(addr1);
       myMultiSignWallet.approveTransaction(1);
       myMultiSignWallet = myMultiSignWallet.connect(addr2);

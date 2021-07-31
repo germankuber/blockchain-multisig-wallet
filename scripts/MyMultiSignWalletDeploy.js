@@ -15,7 +15,7 @@ async function main() {
 
   // We get the contract to deploy
   const MyMultiSignWallet = await hre.ethers.getContractFactory("MyMultiSignWallet");
-  const myMultiSignWallet = await MyMultiSignWallet.deploy("Hello, Hardhat!");
+  const myMultiSignWallet = await MyMultiSignWallet.deploy(2);
 
   await myMultiSignWallet.deployed();
 

@@ -1,6 +1,5 @@
-const { expect, assert } = require("chai");
-const { deployMockContract } = require("ethereum-waffle");
-const { IERC20Abi, setupTest } = require("./utils");
+const { expect } = require("chai");
+const { setupTest } = require("../utils");
 
 
 

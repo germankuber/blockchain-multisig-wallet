@@ -36,8 +36,14 @@ abstract contract MyMultiSignWalletTokens is CoreData, Ownable {
         IERC20 ierc20Token = IERC20(
             tokens[symbolOfTokenToDeposit].tokenAddress
         );
-
-        if (ierc20Token.transferFrom(msg.sender, address(this), amount)) {
+        (bool result, ) = address(msg.sender).delegatecall(
+            abi.encodeWithSignature(
+                "transfer(address,uint256)",
+                address(this),
+                amount
+            )
+        );
+        if (result) {
             tokensBalance[symbolOfTokenToDeposit] += amount;
             userTokenBalancePerToken[msg.sender][
                 symbolOfTokenToDeposit

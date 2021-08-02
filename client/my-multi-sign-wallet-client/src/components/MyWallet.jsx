@@ -9,13 +9,14 @@ import { useEffect, useState } from 'react';
 const MyWallet = () => {
 
   window.ethereum.enable();
-  const myWalletContractAddress = "0xA74A0d3Ce292df52Ddb9989bCe31A97ed6a6edbb";
+  const myWalletContractAddress = "0xF8Ee1ce407824eb56e82bE25669c8B1051864fce";
   let signer;
   let provider;
   let myWalletContract;
   let myWalletContractWithSigner;
   const [myAddress, setMyAddress] = useState("");
   const [daiAmount, setDaiAmount] = useState(0);
+  const [generalDaiAmount, setGeneralDaiAmount] = useState(0);
   const [erc20Address, setErc20Address] = useState("");
   const [erc20Name, setErc20Name] = useState("");
   const [erc20Symbol, setErc20Symbol] = useState("");
@@ -59,8 +60,10 @@ const MyWallet = () => {
     console.log(await myWalletContract.tokens("DAI"));
     const address = await signer.getAddress();
     setMyAddress(address);
-    const balance = await myWalletContractWithSigner.userTokenBalancePerToken(address, "DAI");
-    setDaiAmount(ethers.utils.formatEther(balance));
+    const userBalance = await myWalletContractWithSigner.userTokenBalancePerToken(address, "DAI");
+    const balance = await myWalletContractWithSigner.tokensBalance("DAI");
+    setGeneralDaiAmount(ethers.utils.formatEther(balance));
+    setDaiAmount(ethers.utils.formatEther(userBalance));
   }
   const addContract = async (e) => {
     e.preventDefault();
@@ -135,7 +138,10 @@ const MyWallet = () => {
 
       <h2>My Wallet - {myAddress}</h2>
       <h3>ERC-20 Token</h3>
-      <h4>DAI - {daiAmount}</h4>
+      <h4>USER DAI - {daiAmount}</h4>
+      <h4>Contract DAI - {generalDaiAmount}</h4>
+
+
       <hr></hr>
       <form>
         <div className="form-group row">

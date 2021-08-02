@@ -73,7 +73,6 @@ abstract contract CoreData {
     mapping(string => uint256) public tokensBalance;
     mapping(address => mapping(string => uint256))
         public userTokenBalancePerToken;
-    mapping(address => uint256) public userEthBalance;
 
     mapping(address => mapping(string => mapping(address => bool)))
         public permissions;
